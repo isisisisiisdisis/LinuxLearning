@@ -94,3 +94,5 @@ systemd-journald.service 产生的内存日志存储信息在 /run/log中  可�
 systemd-journalctl.service的配置文件在/etc/systemd/journalctl.conf
 
 日志查看工具 logwatch
+
+Mimikatz
