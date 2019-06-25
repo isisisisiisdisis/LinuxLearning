@@ -1,1 +1,96 @@
-test is log HIIII
+使用centos7
+
+查看ip addr
+centos7默认不开启网卡 
+修改文件/etc/sysconfig/network-scripts/ifcfg-ens33的onboot参数为yes
+
+重启网络服务
+
+service network restart
+
+
+daemons 后台程序 守护进程
+
+相关的文件与作用：
+	boot.log 系统开机时相关的检测   保存一次启动信息
+	cron：计划任务 
+	dmesg:开始时候内核检测过程中产生的信息
+	lastlog：最后一次登录信息
+	maillog或者mail下面的文件：邮件的往来信息，
+	message:系统错误信息存储的文件 重要信息
+	secure：牵涉到账户登录信息的记录
+	wtmp与faillog：记录正确登录用户信息与错误登录信息
+	httpd与samba/*： 服务所产生的日志信息
+	....
+
+两种方式： 系统自带 与软件开发商
+
+centos 使用rsyslog.service 统一管理日志文件
+
+logrotate日志轮询工具自动化处理日志容量与更新的问题（centos）
+systemd-journald.service 最主要的信息记录者 由systemd提供
+
+使用journalctl可以查看系统
+
+日志一般格式：
+	时间 主机、服务或者命令、实际内容
+
+日志文件服务器
+
+
+rsyslog.service 配置文件的位置：/etc/rsyslog.conf
+
+sendmail postfix dovecot 与邮件相关的操作
+
+日志信息级别：debug、info、notice、warning、err（服务无法启动等问题）
+crit（critical 临界点） alert（警告 级别与crit高）
+emerg（panic 几乎宕机状态）数字0          
+存在.（包含级别之后全部要） .=（只要这个） .!（排除，要其他）
+
+
+关于syslog 要求写在syslog.h中
+rsyslogd 最基本的deamon程序
+rsyslog.service 用户systemd控制rsyslogs开发的脚本
+rsyslog.conf配置文件单条起作用
+
+
+多个排除时：例如全部存在txt中，排除1与2
+
+*.*；1，2.none txt or
+*.*； 1.none；2.none； txt 
+
+
+mail.*           -/var/log/maillog
+由于数据量较大，先存储在内存，到达数据量时写入磁盘 可能导致部分数据丢失 来不及存入硬盘
+
+
+删除/var/log文件夹 停止rsyslog.service
+
+防止被删除：使用chattr的a  隐藏属性 lsattr 查看隐藏属性
+
+日志服务器：
+	默认使用udp或者tcp 514端口
+	修改rsyslog.conf的配置文件即可
+	客户端：直接在配置文件中添加 *.* @@ 目标地址（tcp传输） 使用UDP @ 目标地址
+
+
+yum provides */netstat
+Or,
+yum whatprovides */netstat
+查看哪个模块有相关的功能提供
+
+
+日志的轮询：logrotate
+
+定时任务相关文件：etc/cron.*
+
+相关文件：/etc/logrotate.conf与 /etc/logrotate.d/  前者为主要配置文件  .d的将会被导入到conf中使用
+
+配置的话可以添加sharedscripts 与endscript 可以进行执行之前 之后的一些操作 每次都需要一个sharedscripts 与endscript
+
+systemd-journald.service 产生的内存日志存储信息在 /run/log中  可以通过journalctl查看
+查看实时的日志信息： journalctl -f
+
+systemd-journalctl.service的配置文件在/etc/systemd/journalctl.conf
+
+日志查看工具 logwatch
