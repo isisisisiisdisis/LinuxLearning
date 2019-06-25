@@ -1,0 +1,35 @@
+system srevice
+
+系统为了提供一些服务，服务就是service 使用daemon提供服务
+
+相关的命名： 服务后面加d 计划任务命令之后加at或者cron 相关的daemon为atd与crond
+
+
+运行级别的分类：
+	1 单人维护模式
+	3 纯命令行模式
+	5 图形界面
+	0-6
+	/etc/rc.d/rc0.d/ 
+
+
+
+systemd 与 init 的区别：
+	init 一项一项的开启
+	systemd 服务依赖性的自我检查 也就是说B依赖于A A没有开启，B启动时会自动开启A
+
+配置情况：
+	/usr/lib/systemd/system/  --- > etc/init.d 每个服务最重要的启动脚本设置
+	/run/systemd/system/ 系统执行过程中所产生服务的脚本 优先级比 usr下的高 👆
+	/etc/systemd/system/ 系统管理员根据主机需要建立的执行脚本  👆
+
+
+主要拓展名类型：
+	service ： 一般服务类型 主要是系统服务
+	socket target mount automount
+
+	不应该使用kill关闭一个正常的服务
+
+	mask ： daemon 不可以被启动，因为它已经被注销了 可以使用unmask改回  
+
+	/etc/services 文件包含服务与端口对应的信息
