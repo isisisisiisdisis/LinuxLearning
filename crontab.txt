@@ -11,3 +11,39 @@ deny相当于黑名单， 但是现实用allow 文件  都不存在则只有root
 设置好时间： at time  然后 指令 最后 ctrl+d 最后的结果返回为一个文件
 
 执行的结果默认是在 mailbox 可以使用重定向 > 到用户解决
+
+batch 使程序只有在空闲时候执行 也是一次 与at类似
+
+计划任务循环执行 cron服务控制 
+
+用户使用crontab命令执行 相关的操作
+
+配置文件： /etc/cron.allow 与 /etc/cron.deny  allow文件的优先级高 
+任务记录位置：/var/spool/cron/ 用账号作为判断依据 也就是账号开文件
+cron执行的记录会被执行到 /var/log/cron中
+
+一共是6个字段 minutes hours day month week command
+
+系统的定时任务：/etc/crontab /etc/cron.d/* 
+
+系统的话直接编辑/etc/crontab 存在7个栏 直接后面多一个执行者
+
+ 但是用户crontab操作是/usr/bin/crontab
+
+
+cron服务一般读取的文件：/etc/crontab /etc/cron.d/* /var/spool/cron/*
+
+存在于/etc/cron.d 目录下面的应该是sh脚本
+
+关于每天、每周 monthly的则是直接在anacron下面执行 由hourly下面的0anacron执行
+
+/dev/null  垃圾桶
+
+定时时候： 周与日期不要并存 
+
+
+anacron：执行 时间到了却没有执行的任务  crond每小时调用一次 
+
+通过读取 timestamps文件 
+
+如果希望计划任务哪怕在关机，重新开机之后执行： /etc/cron.daily /etc/cron.weekly /etc/cron.monthly中 
