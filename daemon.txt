@@ -4,14 +4,12 @@ system srevice
 
 相关的命名： 服务后面加d 计划任务命令之后加at或者cron 相关的daemon为atd与crond
 
-
 运行级别的分类：
 	1 单人维护模式
 	3 纯命令行模式
 	5 图形界面
 	0-6
 	/etc/rc.d/rc0.d/ 
-
 
 
 systemd 与 init 的区别：
@@ -33,3 +31,6 @@ systemd 与 init 的区别：
 	mask ： daemon 不可以被启动，因为它已经被注销了 可以使用unmask改回  
 
 	/etc/services 文件包含服务与端口对应的信息
+
+
+	netstat -tlunp 查看网络端口情况

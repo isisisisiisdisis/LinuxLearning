@@ -1,0 +1,13 @@
+Linux自动任务：at 与 crontab
+
+at:处理仅执行一次就结束的命令  必须要有atd这个服务 
+crontab：循环执行 生效的服务 crond
+
+at任务存在于/var/spool/at中 等待atd服务调用执行
+使用 etc/at.allow与 etc/at.deny对at进行控制
+用户白名单 存在于allow的才可以使用at
+deny相当于黑名单， 但是现实用allow 文件  都不存在则只有root可以使用at
+
+设置好时间： at time  然后 指令 最后 ctrl+d 最后的结果返回为一个文件
+
+执行的结果默认是在 mailbox 可以使用重定向 > 到用户解决

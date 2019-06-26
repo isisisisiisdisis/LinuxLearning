@@ -75,7 +75,7 @@ mail.*           -/var/log/maillog
 
 
 yum provides */netstat
-Or,
+Or
 yum whatprovides */netstat
 查看哪个模块有相关的功能提供
 
