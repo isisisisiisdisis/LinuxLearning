@@ -1,0 +1,19 @@
+用户身份：owner group others 权限 read write execute
+
+文件：/etc/passwd 是用户信息文件
+/etc/shadow文件 用户密码文件
+/etc/group 用户组
+
+权限 链接数 owner group 最后修改时间 name
+
+- 文件
+c串行端口文件
+owner group others
+
+chgrp chown chmod 修改文件组权限
+
+-R 一般都是递归
+
+文件夹下面的x权限 表示用户是否可以进入该目录同时成为工作目录
+
+对于一个文件夹有r权限 表示可以读取改文件夹的文件名列表 没有x但是不可以切换到这个文件夹
