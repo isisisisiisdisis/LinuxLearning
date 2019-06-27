@@ -1,0 +1,25 @@
+centos 可以使用nmcli修改网络参数
+
+nmcli connection show [网卡名称]
+
+hostnamectl 可以修改主机名
+
+防火墙： 网络数据过滤的一种方式
+
+firewalld
+
+设备硬件: dmidecode
+
+lspci 列出全部的pci接口设备
+lsusb 全部的usb设备
+iostat 列出实时的cpu与接口设备之间的io状态
+
+smartmontools 可以检测硬盘信息
+
+
+关于备份:
+	累积备份、差异备份 
+
+	累计备份：第一次完整备份，之后的就是与累积备份文件比较差异
+	差异备份：系统当前状态与备份比较
+	镜像备份：
