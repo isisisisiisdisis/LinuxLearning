@@ -1,0 +1,32 @@
+调试网络程序或者定位网络问题
+netstat
+
+可以查看网络连接 路由表 网络接口统计数据 虚拟连接
+
+查看每个端口被使用的情况： netstat -a | grep id 
+
+查看占用端口的线程： netstat -ap | grep port	
+
+查看指定协议的连接： netstat -at -au tcp udp	
+
+查看处于监听状态的连接：netstat -l 
+
+使用-n 就是直接显示原始端口或者地址
+
+持续检测 使用-c continuous
+
+查看用户和连接的iNode 使用 参数e 可以看到user与inode
+
+查看连接相关的定时器-o
+timer字段的意义:keepalive ~的事件计时
+on 重发的事件
+off 没有时间计时
+timewait 等待事件计时
+
+
+查看数据包统计情况： 
+-s statistics 
+
+查看路由情况：
+-r route
+
