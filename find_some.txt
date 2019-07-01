@@ -1,0 +1,6 @@
+which 查看可执行文件的位置 
+whereis 查看文件的位置  -b 二进制 -m 说明文件 -s 源文件 基于数据库信息查看
+locate 配合数据库查看文件位置
+find 实际搜寻硬盘查询的文件名称
+
+find pathname -options
